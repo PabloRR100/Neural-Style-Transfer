@@ -12,8 +12,24 @@ Neural style transfer is a computer vision technique consisting on applying the 
 ![Intro Image][intro]
 
 
+## Index
+
+- Just give me the code  
+    - Python Files
+        - [PyTorch](https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/PyTorch/style_tranfer.py)
+        - [Keras](https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Keras/style_transfer_model.py) 
+    - Explained Notebooks
+        - [PyTorch Documentation](https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/PyTorch%20Implementation.md)
+        - Keras Documentation - To Be Implemented
+        
+- How it works?
+- Reproduce content
+- Reproduce style
+- Final Picture
+
+
 <h2> How does it work?</h2>
-<br>
+<hr>
 <div class=text-justify>
 The publication where neural style transfer was introduced is this: <a href='https://arxiv.org/pdf/1508.06576.pdf'> Arxiv Publication </a>
 <br><br>
