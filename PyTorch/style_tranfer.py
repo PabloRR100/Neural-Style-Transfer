@@ -55,12 +55,12 @@ input_image = content_image.clone()
 assert content_image.size() == style_image.size(), \
     'Content and Image sizes must match'
 
-## Visualize the images
-#plt.figure()
-#image_drawer(content_image, title='Content Image')
-#
-#plt.figure()
-#image_drawer(style_image, title='Style Image')
+# Visualize the images
+plt.figure()
+image_drawer(content_image, title='Content Image')
+
+plt.figure()
+image_drawer(style_image, title='Style Image')
 
 
 # 2 - Content Loss
@@ -89,19 +89,21 @@ class StyleLoss(nn.Module):
         return input
 
 
-# 4 - Load Pre-trained Network
+
+# 4 - Add loss modules in the right order to modules from pretrained model
+
+content_layers = ['conv_4']
+style_layers = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
+
+
+
+# 5 - Load Pre-trained Network
 ''' For style tranfer VGG is the best architecture '''
 
 cnn = models.vgg19(pretrained=True).features.to(device).eval()
 
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
-
-
-# 5 - Add loss modules in the right order to modules from pretrained model
-
-content_layers = ['conv_4']
-style_layers = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
 
 
 # Function to create the desired architecture from the pretrained model
