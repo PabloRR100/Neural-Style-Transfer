@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug  1 18:46:39 2018
-@author: pabloruizruiz
-"""
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -13,14 +7,12 @@ Created on Wed Aug  1 17:28:28 2018
 """
 
 import os
-import copy
 from PIL import Image
 import matplotlib.pyplot as plt
 
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torchvision.models as models
 import torchvision.transforms as transforms
 
 
@@ -28,7 +20,6 @@ import torchvision.transforms as transforms
 def image_loader(image, imsize, device):
     
     path = os.path.exists(image)
-    print(image)
     assert path, 'Path to images not valid'
     
     # Define transformation

@@ -7,22 +7,22 @@ Created on Wed Aug  1 17:28:28 2018
 
 import os
 import copy
-from PIL import Image
 import matplotlib.pyplot as plt
 
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.models as models
-import torchvision.transforms as transforms
 
 from utils import image_loader, image_drawer
 from utils import gram_matrix, Normalization, get_input_optimizer
 
+
+
 ''' Configuration Parameters '''
 cuda = torch.cuda.is_available()
 device = torch.device('cuda' if cuda else 'cpu')
+os.chdir('/Users/pabloruizruiz/OneDrive/Proyectos/AI/ML/COMPUTER VISION/Neural-Style-Transfer/PyTorch')
 
 #imsize = 512 if cuda else 128
 imsize = 512
@@ -30,6 +30,12 @@ path_to_images = os.path.join(os.getcwd(), '../Images')
 path_to_content = os.path.join(path_to_images, 'content')
 path_to_style   = os.path.join(path_to_images, 'styles')
 path_to_outputs = os.path.join(path_to_images, 'pytorch_outputs')
+
+
+assert os.path.exists(path_to_images), 'Image folder does not exist'
+assert os.path.exists(path_to_content), 'Content images folder does not exist'
+assert os.path.exists(path_to_style), 'Style images folder does not exist'
+assert os.path.exists(path_to_outputs), 'Output folder does not exist'
 
 
 # 1 - Load Images
@@ -40,8 +46,8 @@ content_image = image_loader(content_path, imsize, device)
 style_path = os.path.join(path_to_style, 'fornite_map.jpg')
 style_image = image_loader(style_path, imsize, device)
 
-#input_image = content_image.clone()
-input_image = torch.randn(content_image.data.size(), device=device)
+input_image = content_image.clone()
+#input_image = torch.randn(content_image.data.size(), device=device)
 #plt.figure()
 #image_drawer(input_image, title='Input Image')
 
