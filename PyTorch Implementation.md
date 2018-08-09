@@ -1,6 +1,5 @@
 
 # PyTorch Implementation
----
 
 
 In this notebook it is explained the steps to follow on PyTorch.  
@@ -289,3 +288,12 @@ plt.savefig(os.path.join(path_to_outputs, 'Retiro2'))
 plt.ioff()
 plt.show()
 ```
+
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Images/pytorch_outputs/retiro_fornite_clean.png?raw=True" alt="content" style="width:40%"/>
+
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/intro_retiro.png?raw=True" alt="content" style="width:100%"/>
+
+
+Some previous results that was not that good, so you can see how much the results can be changed depending on the choice of the hyperparamaters:
+
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Images/pytorch_outputs/retiro_fornite_old.png?raw=True" alt="content" style="width:40%"/>
