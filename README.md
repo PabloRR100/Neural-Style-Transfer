@@ -1,7 +1,7 @@
 
 <div class=text-justify>
 <h1>Neural Style Transfer</h1>
-<hr>
+
 </div>
 
 <div class=text-justify>
@@ -9,7 +9,7 @@ Neural style transfer is a computer vision technique consisting on applying the 
 
 </div>
 
-![Intro Image][intro]
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/intro.png?raw=True">
 
 
 ## Index
@@ -42,7 +42,7 @@ We know that a CNN allow us to have a representation of the image into what we c
 </div>
 
 
-<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq1.png?raw=true" alt="eq1" style="width:60%"/>
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq1.png?raw=true" alt="eq1" style="width:30%; margin=10px"/>
 
 This would be equivalent to answering the question: what image maximizes these activations?
 
@@ -63,7 +63,7 @@ As mention, we are looking for the result of the convolution to be equivalent. I
 And compute the loss of this aspect is trivial. We want to know “how far” both volumes are, so we could simple calculate the MSE for the vector resulting of flatten those volumes.
 </div>
 
-<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq2.png?raw=true" alt="eq1" style="width:60%"/>
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq2.png?raw=true" alt="eq1" style="width:40%; margin=10px"/>
 
 <u><h3>Note</h3></u>
 <div class=text-justify>
@@ -72,14 +72,14 @@ We now could think about how CNN works to take more advantage of using it in thi
 Since right now we want to capture the content of the image, we are not actually interested in using the entire network, since we will lose precision in the content encoding. Therefore, the above equations will be more accurate by changing:
 </div>
 
-<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq3.png?raw=true" alt="eq1" style="width:60%"/>
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq3.png?raw=true" alt="eq1" style="width:40%; margin=10px"/>
 
 <div class=text-justify>
 The next picture shows how out prediction image looks if we convolve the content image until the last convolutional layer. We can see how the main features are still kept, and we have “made room” for the style matching. 
 Note that if we recreate after passing the content image only until the first convolution, it will be very sharp, close to the actual content image. So, the content will be kept, but there wouldn’t be that space for the style.
 </div>
 
-<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/content_decoded.png?raw=true" alt="content_decoded" style="width:40%"/>
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/content_decoded.png?raw=true" alt="content_decoded" style="width:40%; margin=10px"/>
 
 
 <h2>Reproduce Style</h2>
@@ -96,7 +96,7 @@ As we saw before, the deeper we go into the CNN the more detail we lose. However
 We need to explain the concept of the gram matrix in order to understand how to reproduce the style.
 </div>
 
-<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq4.png?raw=true" alt="content" style="width:20%; margin-bottom:20px"/>
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq4.png?raw=true" alt="content" style="width:15%; margin=30px"/>
 
 <div class=text-justify>
 The gram matrix G is computed by multiplying the input image by its transpose. The intuition behind this matrix is that it contains non-localized information about the images, such as textures and other features that conform the style of an artist. The gram matrix formulation suggest that it is computing the <b><i>autocorrelation</i></b>. This means, how correlated are the input with itself.
@@ -123,9 +123,18 @@ By doing this, it allows us to capture patterns of different sizes, since they a
 These are one of the hyperparameters we have to decide for the architecture of our style transfer model. The other ones are regarding how much importance we give to the content being well reproduced against the style, to compute the final global loss function. 
 </div>
 
-<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq5.png?raw=true" alt="content" style="width:30%"/>
+<img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq5.png?raw=true" alt="content" style="width:25%"/>
 
 <h1>Final Picture</h1>
 <hr>
 
 <img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/global_picture.png?raw=true" alt="content"/>
+
+# Credits
+---
+
+Thanks to :
+
+- 'The Lazy Programmer' for his wonderful [course on Advanced Computer Vision](https://www.udemy.com/advanced-computer-vision/) on Udemy
+
+- Alexis Jacq for his outstanding tutorial on Neural Style Tranfer on [PyTorch Official Tutorials](https://pytorch.org/tutorials/advanced/neural_style_tutorial.html)
