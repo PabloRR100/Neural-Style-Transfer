@@ -19,6 +19,7 @@ from utils import gram_matrix, Normalization, get_input_optimizer
 
 
 ''' Declaration of Images '''
+
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-s', '--style', required=True, help="style image source")
@@ -27,14 +28,20 @@ args = vars(parser.parse_args())
 
 
 ''' Configuration Parameters '''
+
 cuda = torch.cuda.is_available()
 device = torch.device('cuda' if cuda else 'cpu')
 print('Cuda: ', cuda)
 print('Device: ', device)
 
+imsize = 512 if cuda else 128
 
-#imsize = 512 if cuda else 128
-imsize = 512
+
+''' Configuration of paths '''
+
+root = os.path.abspath(os.getcwd())
+os.chdir(os.path.join(root, 'PyTorch'))
+
 path_to_images = os.path.join(os.getcwd(), '../Images')
 path_to_content = os.path.join(path_to_images, 'content')
 path_to_style   = os.path.join(path_to_images, 'styles')
