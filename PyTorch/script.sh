@@ -50,6 +50,7 @@ manage_env () {
 manage_env
 echo Loading Script...
 
-python PyTorch/style_transfer.py -s $1 -c $2
+# python style_transfer.py -s $1 -c $2
+python style_transfer.py
 
 exit
