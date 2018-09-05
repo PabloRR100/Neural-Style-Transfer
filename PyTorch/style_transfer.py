@@ -246,7 +246,6 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
 print('Init Style Transfer Procces')
 print('---------------------------')
 
-exit()
 
 # 7 - Run and Transer Style!!
 #new_title = str(args['content'] + '_' + args['style'])
