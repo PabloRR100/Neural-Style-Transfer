@@ -17,6 +17,11 @@ import torchvision.models as models
 from utils import image_loader, image_drawer
 from utils import gram_matrix, Normalization, get_input_optimizer
 
+import warnings
+warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", 'ImportWarning')
+warnings.filterwarnings("ignore", 'DeprecationWarning')
+
 
 ''' Declaration of Images '''
 
@@ -29,10 +34,15 @@ from utils import gram_matrix, Normalization, get_input_optimizer
 
 ''' Configuration Parameters '''
 
+display = False
 cuda = torch.cuda.is_available()
 device = torch.device('cuda' if cuda else 'cpu')
+gpus = True if torch.cuda.device_count() > 1 else False
+mem = False if device == 'cpu' else True
+
 print('Cuda: ', cuda)
 print('Device: ', device)
+print('GPUs: ', gpus)
 
 imsize = 512 if cuda else 128
 
@@ -74,11 +84,13 @@ assert content_image.size() == style_image.size(), \
     'Content and Image sizes must match'
 
 # Visualize the images
-plt.figure()
-image_drawer(content_image, title='Content Image')
+if display:
 
-plt.figure()
-image_drawer(style_image, title='Style Image')
+    plt.figure()
+    image_drawer(content_image, title='Content Image')
+    
+    plt.figure()
+    image_drawer(style_image, title='Style Image')
 
 
 # 2 - Content Loss
@@ -118,10 +130,14 @@ style_layers = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
 # 5 - Load Pre-trained Network
 ''' For style tranfer VGG is the best architecture '''
 
+#if gpus: 
+#    cnn = nn.DataParallel(cnn)
+
 cnn = models.vgg19(pretrained=True).features.to(device).eval()
 
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
+
 
 
 # Function to create the desired architecture from the pretrained model
@@ -233,7 +249,8 @@ print('---------------------------')
 exit()
 
 # 7 - Run and Transer Style!!
-new_title = str(args['content'] + '_' + args['style'])
+#new_title = str(args['content'] + '_' + args['style'])
+new_title = 'test_outpus'
 output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
                             content_image, style_image, input_image)
 
