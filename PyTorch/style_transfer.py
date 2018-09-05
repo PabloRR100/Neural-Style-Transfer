@@ -39,8 +39,8 @@ imsize = 512 if cuda else 128
 
 ''' Configuration of paths '''
 
-root = os.path.abspath(os.getcwd())
-os.chdir(os.path.join(root, 'PyTorch'))
+#root = os.path.abspath(os.getcwd())
+#os.chdir(os.path.join(root, 'PyTorch'))
 
 path_to_images = os.path.join(os.getcwd(), '../Images')
 path_to_content = os.path.join(path_to_images, 'content')
