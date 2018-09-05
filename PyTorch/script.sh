@@ -27,10 +27,9 @@ then
   echo
   echo 2 arguments required:
   echo
-  echo Style Image (-s, --style)
+  echo [1] Style Image PAth
   echo
-  echo Content Image (-c, --content)
-  echo Options: [1] True, [2] False
+  echo [2] Content Image Path
   exit
 fi
 
