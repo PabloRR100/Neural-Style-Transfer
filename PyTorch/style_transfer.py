@@ -149,11 +149,12 @@ style_layers = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
 # 5 - Load Pre-trained Network
 ''' For style tranfer VGG is the best architecture '''
 
-#if gpus: 
-#    cnn = nn.DataParallel(cnn)
 
-cnn = models.vgg19(pretrained=True).features.to(device).eval()
+cnn = models.vgg19(pretrained=True)
+if gpus: 
+    cnn = nn.DataParallel(cnn)
 
+cnn.features.to(device).eval()
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
@@ -216,7 +217,7 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
 # 6 - Training Algorithm
 def run_style_transfer(cnn, normalization_mean, normalization_std,
                        content_img, style_img, input_img, num_steps=2000,
-                       style_weight=1000000, content_weight=10):
+                       style_weight=1000000, content_weight=3):
     """Run the style transfer."""
     print('Building the style transfer model..')
     model, style_losses, content_losses = get_style_model_and_losses(cnn,
