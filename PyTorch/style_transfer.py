@@ -47,6 +47,7 @@ def time(start):
 ''' Configuration Parameters '''
 
 display = False
+comments = True
 cuda = torch.cuda.is_available()
 device = torch.device('cuda' if cuda else 'cpu')
 gpus = True if torch.cuda.device_count() > 1 else False
@@ -74,6 +75,12 @@ assert os.path.exists(path_to_images), 'Image folder does not exist'
 assert os.path.exists(path_to_content), 'Content images folder does not exist'
 assert os.path.exists(path_to_style), 'Style images folder does not exist'
 assert os.path.exists(path_to_outputs), 'Output folder does not exist'
+
+if comments:
+    print('Path to : ', path_to_images)
+    print('Path to : ', path_to_content)
+    print('Path to : ', path_to_style)
+    print('Path to : ', path_to_outputs)
 
 
 # 1 - Load Images
