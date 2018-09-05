@@ -29,7 +29,7 @@ Neural style transfer is a computer vision technique consisting on applying the 
 
 
 <h2> How does it work?</h2>
-<hr>
+
 <div class=text-justify>
 The publication where neural style transfer was introduced is this: <a href='https://arxiv.org/pdf/1508.06576.pdf'> Arxiv Publication </a>
 <br><br>
@@ -50,7 +50,6 @@ This would be equivalent to answering the question: what image maximizes these a
 
 
 <h2>Reproduce Content</h2>
-<hr>
 
 How could we reproduce the content of an image?
 
@@ -83,7 +82,6 @@ Note that if we recreate after passing the content image only until the first co
 
 
 <h2>Reproduce Style</h2>
-<hr>
 
 <div class=text-justify>
 We have already cover how are we going to attempt to replicate the content of a target image. But, at the same time we keep track of replicating the style of the style image. In fact, if we were only to replicate the output using the input image, why did we bother to use a CNN in the first place?
@@ -126,12 +124,10 @@ These are one of the hyperparameters we have to decide for the architecture of o
 <img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/eq5.png?raw=true" alt="content" style="width:25%"/>
 
 <h1>Final Picture</h1>
-<hr>
 
 <img src="https://github.com/PabloRR100/Neural-Style-Transfer/blob/master/Documentation/images/global_picture.png?raw=true" alt="content"/>
 
 # Credits
----
 
 Thanks to :
 
