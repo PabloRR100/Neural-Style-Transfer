@@ -24,30 +24,16 @@ then
   echo
   echo 2 arguments required:
   echo
-  echo Cuda version
-  echo Options: [1] cuda80, [2] cuda90
+  echo Style Image (-s, --style)
   echo
-  echo Testing mode
+  echo Content Image (-c, --content)
   echo Options: [1] True, [2] False
   exit
 fi
 
-if [ $1 == 'cuda80' ]
-then
-  echo Activating environment cuda8...
-  module load cuda/8.0.61-fasrc01 cudnn/6.0_cuda8.0-fasrc01
-  CONDA="cuda8"
-elif [ $1 == 'cuda90' ]
-then
-  echo Activating environment torch37...
-  module load cuda/9.0-fasrc02 cudnn/7.0_cuda9.0-fasrc01
-  CONDA="torch37"
-else
-  echo Environment not found
-  echo Please, rememeber to insert env as parameter
-  echo Aborting...
-  exit 1
-fi
+echo Activating environment torch37...
+module load cuda/9.0-fasrc02 cudnn/7.0_cuda9.0-fasrc01
+CONDA="torch37"
 
 # Output information
 manage_env () {
@@ -60,7 +46,6 @@ manage_env () {
 manage_env
 echo Loading Script...
 
-python demo_CIFAR10.py --name ResNet --save False --testing $2 --comments True --draws False --ensembleSize Big --dataset fruits-360-small
-# python demo_CIFAR10.py --name  --save True --﻿testing False --comments True --draws False --ensembleSize Big --dataset CIFAR10
+python PyTorch/style_transfer.py -s $1 -c $2
 
 exit
