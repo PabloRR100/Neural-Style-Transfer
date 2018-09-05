@@ -90,7 +90,7 @@ content_path = os.path.join(path_to_content, 'ace_pablo.jpg')
 content_image = image_loader(content_path, imsize, device)
 
 #style_path = os.path.join(path_to_style, args['style'])
-style_path = os.path.join(path_to_style, 'picaso.jpg')
+style_path = os.path.join(path_to_style, 'picasso.jpg')
 style_image = image_loader(style_path, imsize, device)
 
 input_image = content_image.clone()
