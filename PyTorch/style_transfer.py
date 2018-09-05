@@ -5,6 +5,10 @@ Created on Wed Aug  1 17:28:28 2018
 @author: pabloruizruiz
 """
 
+# If running from shell
+import matplotlib
+matplotlib.use('Agg')
+
 import os
 import copy
 import matplotlib.pyplot as plt
