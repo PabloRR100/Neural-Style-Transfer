@@ -20,11 +20,11 @@ from utils import gram_matrix, Normalization, get_input_optimizer
 
 ''' Declaration of Images '''
 
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('-s', '--style', required=True, help="style image source")
-parser.add_argument('-c', '--content', required=True, help="content image source")
-args = vars(parser.parse_args())
+#import argparse
+#parser = argparse.ArgumentParser()
+#parser.add_argument('-s', '--style', required=True, help="style image source")
+#parser.add_argument('-c', '--content', required=True, help="content image source")
+#args = vars(parser.parse_args())
 
 
 ''' Configuration Parameters '''
@@ -56,10 +56,12 @@ assert os.path.exists(path_to_outputs), 'Output folder does not exist'
 
 # 1 - Load Images
 
-content_path = os.path.join(path_to_content, args['content'])
+#content_path = os.path.join(path_to_content, args['content'])
+content_path = os.path.join(path_to_content, 'ace_pablo.jpg')
 content_image = image_loader(content_path, imsize, device)
 
-style_path = os.path.join(path_to_style, args['style'])
+#style_path = os.path.join(path_to_style, args['style'])
+style_path = os.path.join(path_to_style, 'starrynight.jpg')
 style_image = image_loader(style_path, imsize, device)
 
 input_image = content_image.clone()

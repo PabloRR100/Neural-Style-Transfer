@@ -21,6 +21,7 @@
 
 module load Anaconda3/5.0.1-fasrc02
 
+: <<'END'
 if [ $# -lt 2 ]
 then
   echo [Error]: Missing arguments
@@ -32,6 +33,7 @@ then
   echo [2] Content Image Path
   exit
 fi
+END
 
 echo Activating environment torch37...
 module load cuda/9.0-fasrc02 cudnn/7.0_cuda9.0-fasrc01
