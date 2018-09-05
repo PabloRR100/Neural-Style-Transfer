@@ -18,11 +18,20 @@ from utils import image_loader, image_drawer
 from utils import gram_matrix, Normalization, get_input_optimizer
 
 
+''' Declaration of Images '''
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--style', required=True, help="style image source")
+parser.add_argument('-c', '--content', required=True, help="content image source")
+args = vars(parser.parse_args())
+
 
 ''' Configuration Parameters '''
 cuda = torch.cuda.is_available()
 device = torch.device('cuda' if cuda else 'cpu')
-os.chdir('/Users/pabloruizruiz/OneDrive/Proyectos/AI/ML/COMPUTER VISION/Neural-Style-Transfer/PyTorch')
+print('Cuda: ', cuda)
+print('Device: ', device)
+
 
 #imsize = 512 if cuda else 128
 imsize = 512
@@ -40,10 +49,10 @@ assert os.path.exists(path_to_outputs), 'Output folder does not exist'
 
 # 1 - Load Images
 
-content_path = os.path.join(path_to_content, 'retiro.jpg')
+content_path = os.path.join(path_to_content, args['content'])
 content_image = image_loader(content_path, imsize, device)
 
-style_path = os.path.join(path_to_style, 'fornite_map.jpg')
+style_path = os.path.join(path_to_style, args['style'])
 style_image = image_loader(style_path, imsize, device)
 
 input_image = content_image.clone()
@@ -209,13 +218,18 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
     input_img.data.clamp_(0, 1)
     return input_img
 
+print('Init Style Transfer Procces')
+print('---------------------------')
+
+exit()
 
 # 7 - Run and Transer Style!!
+new_title = str(args['content'] + '_' + args['style'])
 output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
                             content_image, style_image, input_image)
 
 plt.figure()
 image_drawer(output, title='Output Image')
-plt.savefig(os.path.join(path_to_outputs, 'Retiro2'))
+plt.savefig(os.path.join(path_to_outputs, new_title))
 plt.ioff()
 plt.show()
