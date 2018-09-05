@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Usage:
+# sbatch PyTorch/script.sh Images/styles/starrynight.jpg Images/content/ace_pablo.jpg
+
 # Confuguration for multiple GPU on a single Machine
 
 #SBATCH -n 1                # Number of cores
