@@ -22,6 +22,14 @@ warnings.filterwarnings("ignore")
 warnings.filterwarnings("ignore", 'ImportWarning')
 warnings.filterwarnings("ignore", 'DeprecationWarning')
 
+from datetime import datetime
+now = datetime.now
+def time(start):    
+    elapsed = (now() - start).total_seconds()
+    hours =  int(elapsed/3600)
+    minutes = round((elapsed/3600 - hours)*60, 2)
+    return hours, minutes
+
 
 ''' Declaration of Images '''
 
@@ -249,9 +257,12 @@ print('---------------------------')
 
 # 7 - Run and Transer Style!!
 #new_title = str(args['content'] + '_' + args['style'])
+start = now()
 new_title = 'test_outpus'
 output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
                             content_image, style_image, input_image)
+print('Time: {} hours {} minutes'.\
+      format(time(start)[0], time(start)[1]))
 
 plt.figure()
 image_drawer(output, title='Output Image')
