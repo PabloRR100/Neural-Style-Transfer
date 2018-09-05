@@ -150,14 +150,9 @@ style_layers = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
 ''' For style tranfer VGG is the best architecture '''
 
 
-cnn = models.vgg19(pretrained=True)
-if gpus: 
-    cnn = nn.DataParallel(cnn)
-
-cnn.features.to(device).eval()
+cnn = models.vgg19(pretrained=True).features.to(device).eval()
 cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
 cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
-
 
 
 # Function to create the desired architecture from the pretrained model
@@ -223,7 +218,12 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
     model, style_losses, content_losses = get_style_model_and_losses(cnn,
         normalization_mean, normalization_std, style_img, content_img)
     optimizer = get_input_optimizer(input_img)
-
+    
+    if gpus: 
+        print('Deplying model into gpus...')        
+        model = nn.DataParallel(model)
+        model.to(device)
+    
     print('Optimizing..')
     run = [0]
     while run[0] <= num_steps:
@@ -233,6 +233,7 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
             input_img.data.clamp_(0, 1)
 
             optimizer.zero_grad()
+                
             model(input_img)
             style_score = 0
             content_score = 0
