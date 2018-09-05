@@ -1,5 +1,3 @@
-h
-
 # Confuguration for multiple GPU on a single Machine
 
 #SBATCH -n 1                # Number of cores
